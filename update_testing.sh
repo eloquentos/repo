@@ -46,11 +46,11 @@ rsync -rtlvH --safe-links --delete-after --progress -h ${QUIET} --timeout=600 --
 repo-add /tmp/testing.db.tar.gz /srv/arch/newest/*/os/x86_64/*.pkg.tar.xz
 rm /srv/repo/testing/x86_64/*
 ln -s /srv/arch/newest/*/os/x86_64/*.pkg.* /srv/repo/testing/x86_64/
-mv /tmp/testing.db.tar.gz /srv/repo/testing/x86_64/
+mv /tmp/testing.db* /srv/repo/testing/x86_64/
 
 repo-add /tmp/testing.db.tar.gz /srv/arch/newest/*/os/i686/*.pkg.tar.xz
 rm /srv/repo/testing/i686/*
 ln -s /srv/arch/newest/*/os/i686/*.pkg.* /srv/repo/testing/i686/
-mv /tmp/testing.db.tar.gz /srv/repo/testing/i686
+mv /tmp/testing.db* /srv/repo/testing/i686
 
 #echo "Last sync was $(date -d @$(cat ${target}/lastsync))"
