@@ -43,13 +43,34 @@ rsync -rtlvH --safe-links --delete-after --progress -h ${QUIET} --timeout=600 --
         ${source} \
         "${target}"
 
+rm -rf /srv/packages/testing/builds
+git clone https://github.com/eloquentos/system-packages /srv/packages/testing/builds
+
+for i in /srv/packages/testing/builds/* ; do
+    if [ -d "$i" ]; then
+        cd "$i"
+        makepkg
+    fi
+done
+
+mkdir -p /srv/packages/testing/packages
+repo-add /tmp/testing.db.tar.gz /srv/packages/testing/builds/*/*.pkg.*
+
+repo-add /tmp/testing.db.tar.gz /srv/packages/testing/builds/*/*.pkg.*
 repo-add /tmp/testing.db.tar.gz /srv/arch/newest/*/os/x86_64/*.pkg.tar.xz
 rm /srv/repo/testing/x86_64/*
+rm -rf /srv/packages/testing/packages
+cp /srv/packages/testing/builds/*/*.pkg.* /srv/packages/testing/packages
+ln -s /srv/packages/testing/packages/*.pkg.*  /srv/repo/testing/x86_64
 ln -s /srv/arch/newest/*/os/x86_64/*.pkg.* /srv/repo/testing/x86_64/
 mv /tmp/testing.db* /srv/repo/testing/x86_64/
 
+repo-add /tmp/testing.db.tar.gz /srv/packages/testing/builds/*.pkg.*
 repo-add /tmp/testing.db.tar.gz /srv/arch/newest/*/os/i686/*.pkg.tar.xz
 rm /srv/repo/testing/i686/*
+rm -rf /srv/packages/testing/packages
+cp /srv/packages/testing/builds/*/*.pkg.* /srv/packages/testing/packages
+ln -s /srv/packages/testing/packages/*.pkg.*  /srv/repo/testing/i686
 ln -s /srv/arch/newest/*/os/i686/*.pkg.* /srv/repo/testing/i686/
 mv /tmp/testing.db* /srv/repo/testing/i686
 
