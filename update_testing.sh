@@ -56,7 +56,7 @@ rsync -rtlvH --safe-links --delete-after --progress -h ${QUIET} --timeout=600 --
 mkdir -p /srv/packages/testing/packages
 
 # TODO: Here we will get our built packages from Github and place them in /srv/packages/testing/packages
-repo-add /tmp/testing.db.tar.gz /tmp/packages/testing/packages/*.pkg.*
+repo-add /tmp/testing.db.tar.gz /srv/packages/testing/packages/*.pkg.*
 
 #repo-add /tmp/testing.db.tar.gz /srv/packages/testing/builds/*/*.pkg.*
 repo-add /tmp/testing.db.tar.gz /srv/arch/newest/*/os/x86_64/*.pkg.tar.xz
