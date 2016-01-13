@@ -8,8 +8,8 @@ mv /srv/packages/testing /srv/packages/stable
 rm /srv/repo/testing/*.pkg.*
 ln -s /srv/arch/current/*/os/x86_64/*.pkg.* /srv/repo/testing/x86_64/
 ln -s /srv/arch/current/*/os/i686/*.pkg.* /srv/repo/testing/i686/
-ln -s /srv/packages/stable/packages/*.pkg.* /srv/repo/testing/x86_64
-ln -s /srv/packages/stable/packages/*.pkg.* /srv/repo/testing/i686
+ln -s /srv/packages/stable/packages/x86_64/*.pkg.* /srv/repo/testing/x86_64
+ln -s /srv/packages/stable/packages/i686/*.pkg.* /srv/repo/testing/i686
 cp /srv/repo/testing /srv/repo/stable
 mv /srv/repo/stable/testing.db.tar.gz /srv/repo/stable/stable.db.tar.gz
 ln -sfn /srv/repo/stable/stable.db.tar.gz /srv/repo/stable/stable.db
